@@ -1,17 +1,17 @@
-package singleton
+package main 
 
 import (
 	"testing"
 )
 
-// TestGetInstance kiểm tra xem hàm gọi GetInstace trả về gì
 func TestGetInstance(t *testing.T) {
-	counter1 := GetInstance() 
+	counter1 := GetInstance()
 
 	if counter1 == nil {
-		t.Error("muốn có 1 địa chỉ pointer trỏ đến Singleton sau khi gọi GetInstance(), chứ không phải nil")
-	} 
-	expectedCounter := counter1 
+		t.Error("epected pointer to Singleton after calling GetInstance(), not nil")
+	}
+
+	expectedCounter := counter1
 
 	currentCount := counter1.AddOne()
 	if currentCount != 1 {
@@ -20,7 +20,6 @@ func TestGetInstance(t *testing.T) {
 
 	counter2 := GetInstance()
 	if counter2 != expectedCounter {
-		//Test 2 failed
 		t.Error("Expected same instance in counter2 but it got a different instance")
 	}
 
@@ -28,6 +27,5 @@ func TestGetInstance(t *testing.T) {
 	if currentCount != 2 {
 		t.Errorf("After calling 'AddOne' using the second counter, the current count must be 2 but was %d\n", currentCount)
 	}
-
 
 }
